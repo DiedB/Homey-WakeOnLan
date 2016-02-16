@@ -1,0 +1,55 @@
+{
+  "id": "it.diederik.wol",
+  "name": {
+    "en": "Wake on LAN"
+  },
+  "description": {
+    "en": "Simple Wake on LAN flow actions for waking up supported devices."
+  },
+  "version": "1.0.0",
+  "compatibility": "0.x || 1.x",
+  "author": {
+    "name": "Diederik Bakker",
+    "email": "diederik@outlook.com"
+  },
+  "images": {
+    "large": "./assets/images/large.jpg",
+    "small": "./assets/images/small.jpg"
+  },
+  "category": "internet",
+  "speech": [
+    {
+      "id": "wol",
+      "importance": 1,
+      "triggers": {
+        "en": [
+          "wake"
+        ]
+      }
+    }
+  ],
+  "flow": {
+    "triggers": [],
+    "actions": [
+      {
+        "id": "wol",
+        "title": {
+          "en": "Wake on LAN"
+        },
+        "args": [
+          {
+            "name": "mac",
+            "type": "text",
+            "placeholder": {
+              "en": "12:34:56:AB:CD:EF"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": [],
+  "dependencies": {
+    "node-wol": "*"
+  }
+}
