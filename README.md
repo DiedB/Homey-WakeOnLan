@@ -6,6 +6,7 @@ Create Wake on LAN actions in the Homey flow editor. Homey will send a magic pac
 
 ### Release notes
 1.0.0 - First release
+
 1.0.1 - Bugfix
 
 ### To do
