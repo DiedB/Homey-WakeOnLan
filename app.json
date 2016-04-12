@@ -6,7 +6,7 @@
   "description": {
     "en": "Simple Wake on LAN flow actions for waking up supported devices."
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "compatibility": "0.x || 1.x",
   "author": {
     "name": "Diederik Bakker",
@@ -16,7 +16,7 @@
     "large": "./assets/images/large.jpg",
     "small": "./assets/images/small.jpg"
   },
-  "category": "internet",
+  "category": "tools",
   "speech": [
     {
       "id": "wol",
