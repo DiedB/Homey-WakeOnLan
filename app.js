@@ -4,18 +4,24 @@ function init() {
 
 	var wol = require('node-wol');
 
-	Homey.manager('flow').on('action.wol', function( callback, args ){
+	
+
+	Homey.manager('flow').on('action.wol', function(callback, args){
 		var mac = args.mac;
 
-		// Remove div tags, probably a bug in Homey
-		mac = mac.replace('<div>', '');
-		mac = mac.replace('</div>', '');
+		if (mac.match("(?:[A-Fa-f0-9]{2}[:-]){5}(?:[A-Fa-f0-9]{2})")) {
+			Homey.log("Waking up: ", mac);
+			
+			try {
+				wol.wake(mac);
+			} catch(err) {
+				callback('Mac address malformed!', false);
+			}
 
-		Homey.log("Waking up: ", mac);
-		
-		wol.wake(mac);
-
-		callback(null, true);
+			callback(null, true);
+		} else {
+			callback('Mac address malformed!', false);
+		}
 	});
 	
 }
