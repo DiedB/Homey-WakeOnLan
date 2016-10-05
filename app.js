@@ -14,13 +14,12 @@ function init() {
 			
 			try {
 				wol.wake(mac);
+				callback(null, true);
 			} catch(err) {
-				callback('Mac address malformed!', false);
+				callback('MAC address malformed!', false);
 			}
-
-			callback(null, true);
 		} else {
-			callback('Mac address malformed!', false);
+			callback('MAC address malformed!', false);
 		}
 	});
 	
