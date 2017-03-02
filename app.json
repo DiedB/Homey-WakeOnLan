@@ -28,6 +28,10 @@
           "id": "pair"
         }
       ],
+      "images": {
+        "large": "./drivers/wol_device/assets/images/large.png",
+        "small": "./drivers/wol_device/assets/images/small.png"
+      },
       "class": "button",
       "capabilities": [ "button" ],
       "capabilitiesOptions": {
