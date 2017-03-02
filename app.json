@@ -6,7 +6,7 @@
   "description": {
     "en": "Simple Wake on LAN flow actions for waking up supported devices."
   },
-  "version": "1.0.2",
+  "version": "1.1.0",
   "compatibility": "0.x || 1.x",
   "author": {
     "name": "Diederik Bakker",
@@ -17,6 +17,28 @@
     "small": "./assets/images/small.jpg"
   },
   "category": "tools",
+  "drivers": [
+    {
+      "id": "wol_device",
+      "name": {
+        "en": "WOL Device"
+      },
+      "pair": [
+        {
+          "id": "pair"
+        }
+      ],
+      "class": "button",
+      "capabilities": [ "button" ],
+      "capabilitiesOptions": {
+        "button": {
+            "title": {
+                "en": "Wake on LAN"
+            }
+        }
+    }
+    }
+  ],
   "speech": [
     {
       "id": "wol",
