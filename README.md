@@ -13,4 +13,4 @@ Add devices in Homey's LAN network by their MAC address. Start them remotely usi
 
 1.1.0 - Added driver to allow turning on devices using the Homey app
 
-2.0.0 - App rewrite for Apps SDK v2. Removed flow trigger.
+2.0.0 - App rewrite for Apps SDK v2. Removed flow trigger. Added Dutch translations.
