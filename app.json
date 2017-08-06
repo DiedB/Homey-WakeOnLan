@@ -1,27 +1,31 @@
 {
   "id": "it.diederik.wol",
+  "version": "2.0.0",
+  "compatibility": ">=1.5.0",
+  "sdk": 2,
   "name": {
-    "en": "Wake on LAN"
+    "en": "Wake on LAN",
+    "nl": "Wake on LAN"
   },
   "description": {
-    "en": "Simple Wake on LAN flow actions for waking up supported devices."
+    "en": "Start devices remotely using Wake on LAN.",
+    "nl": "Start apparaten op afstand met Wake on LAN."
   },
-  "version": "1.1.0",
-  "compatibility": "0.x || 1.x",
-  "author": {
-    "name": "Diederik Bakker",
-    "email": "diederik@outlook.com"
-  },
+  "category": "tools",
   "images": {
     "large": "./assets/images/large.jpg",
     "small": "./assets/images/small.jpg"
   },
-  "category": "tools",
+  "author": {
+    "name": "Diederik Bakker",
+    "email": "diederik@outlook.com"
+  },
   "drivers": [
     {
       "id": "wol_device",
       "name": {
-        "en": "WOL Device"
+        "en": "WOL Device",
+        "nl": "WOL-apparaat"
       },
       "pair": [
         {
@@ -37,45 +41,11 @@
       "capabilitiesOptions": {
         "button": {
             "title": {
-                "en": "Wake on LAN"
+                "en": "Wake on LAN",
+                "nl": "Wake on LAN"
             }
         }
-    }
-    }
-  ],
-  "speech": [
-    {
-      "id": "wol",
-      "importance": 1,
-      "triggers": {
-        "en": [
-          "wake"
-        ]
       }
     }
-  ],
-  "flow": {
-    "triggers": [],
-    "actions": [
-      {
-        "id": "wol",
-        "title": {
-          "en": "Wake on LAN"
-        },
-        "args": [
-          {
-            "name": "mac",
-            "type": "text",
-            "placeholder": {
-              "en": "12:34:56:AB:CD:EF"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  "permissions": [],
-  "dependencies": {
-    "node-wol": "*"
-  }
+  ]
 }

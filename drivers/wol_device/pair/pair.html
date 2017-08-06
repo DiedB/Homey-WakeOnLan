@@ -1,76 +1,68 @@
 <style type="text/css">
-	.input-wrap {
-		position: relative;
-	}
-	.fa {
-		position: absolute;
-		margin-left: 5px;
-		margin-top: 7px;
-		opacity: 0;
-		visibility: hidden;
-		transition: all 0.3s;
-	}
-	.fa.visible {
-		opacity: 1;
-		visibility: visible;
-	}
+.form-wrapper {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+}
+
+.form-group, .input-field {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.input-field {
+	margin-top: 10px;
+}
+
+.submit-button {
+	margin-top: 10px;
+}
 </style>
 
-<p class="form-group">
-	<label for="mac">Please enter the MAC address of your device:</label>
+<div class="form-wrapper">
+	<div class="form-group">
+		<div class="input-field">
+			<label for="mac">Please enter the MAC address of your device:</label>
+			<input type="text" id="mac" placeholder="12:34:56:AB:CD:EF" value="" />
+		</div>
 
-	<span class="input-wrap">
-		<input type="text" id="mac" placeholder="12:34:56:AB:CD:EF" value="" />
-	</span>
+		<div class="input-field">
+			<label for="address">Give your device a name:</label>
+			<input type="text" id="name" placeholder="Name" value="" />
+		</div>
 
-  <br/>
-
-  <label for="address">Give your device a name:</label>
-
-  <span class="input-wrap">
-    <input type="text" id="name" placeholder="Name" value="" />
-  </span>
-
-	<br/><br/>
-
-	<button class="button" id="validate">Add</button>
-	<i class="wol-status wol-ok fa fa-check" style="color: #96ff00;"></i>
-	<i class="wol-status wol-err fa fa-times" style="color: #ff6300;"></i>
-</p>
-
-<p class="wol-err-msg" style="color: #ff6300;"></p>
+		<button class="submit-button" id="validate">Add</button>
+	</div>
+</div>
 
 <script type="text/javascript">
-$(function(){
-	$('#validate').click(function(){
+	$(() => {
+		$('#validate').click(() => {
+			$('#validate').prop('disabled', true);
 
-		var mac = $('#mac').val();
-    var name = $('#name').val();
-		$('.wol-status').removeClass('visible');
+			var mac = $('#mac').val();
+			var name = $('#name').val();
 
-		if (mac.match("(?:[A-Fa-f0-9]{2}[:-]){5}(?:[A-Fa-f0-9]{2})")) {
-			$('.wol-ok').addClass('visible');
-			$('.wol-err-msg').html('');
-
-			var device_data = {
-				id: mac,
-        name: name
-			};
-
-			Homey.addDevice({
-				name	: name || 'WOL Device',
-				data 	: device_data
-			}, function(err, result) {
-				if(err) return Homey.alert(err.message || err.toString());
-				Homey.emit('add_device', device_data, function( err, result ){
-					if(err) return Homey.alert(err.message || err.toString());
-					Homey.done();
-				})
-			})
-		} else {
-			$('.wol-err').addClass('visible');
-			$('.wol-err-msg').html('Invalid MAC address');
-		}
+			Homey.emit('validate', {mac: mac}, (valid) => {
+				if (!valid) {
+					Homey.alert(Homey.__('mac_error'));
+					$('#validate').prop('disabled', false);
+				} else {
+					Homey.addDevice({
+						data: {
+							mac: mac
+						},
+						name: name || Homey.__('default_name')
+					}, (error, result) => {
+						if (error) return console.error(err);
+    					Homey.done();
+					});
+				}
+			});
+		})
 	})
-})
 </script>

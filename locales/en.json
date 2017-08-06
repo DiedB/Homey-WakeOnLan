@@ -1,1 +1,4 @@
-{}
+{
+    "mac_error": "MAC address invalid. Please try entering a MAC address of the form 12:34:56:AB:CD:EF.",
+    "default_name": "WOL Device"
+}

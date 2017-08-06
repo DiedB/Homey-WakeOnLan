@@ -1,46 +1,26 @@
-"use strict";
+'use strict';
 
-var wol = require('node-wol');
+const Homey = require('homey');
+const wol = require('node-wol');
 
-var devices = {};
+class WOLDriver extends Homey.Driver {
+	onPair(socket) {
+        this.log('Pairing started');
+        
+        socket.on('validate', (data, callback) => {
+            callback(this.testAddress(data.mac));
+        });
+    }
 
-module.exports.init = function( devices_data, callback ) {
-    devices_data.forEach(function(device_data){
-        initDevice( device_data );
-    })
-
-    callback();
-}
-
-module.exports.added = function( device_data, callback ) {
-    initDevice( device_data );
-    callback( null, true );
-}
-
-module.exports.deleted = function( device_data, callback ) {
-    delete devices[ device_data.id ];
-    callback( null, true );
-}
-
-module.exports.pair = function( socket ) {
-    Homey.log('Pairing started');
-}
-
-module.exports.capabilities = {};
-module.exports.capabilities.button = {};
-module.exports.capabilities.button.set = function( device_data, button, callback ) {
-    Homey.log('Waking up ' + device_data.id);
-
-    try {
-      wol.wake(device_data.id);
-      callback(null, true);
-    } catch(err) {
-      callback('MAC address malformed!', false);
+    testAddress(mac) {
+        try {
+            wol.createMagicPacket(mac);
+        } catch (error) {
+            return false;
+        }
+        
+        return true;
     }
 }
 
-
-function initDevice( device_data ) {
-    devices[ device_data.id ] = {};
-    devices[ device_data.id ].data = device_data;
-}
+module.exports = WOLDriver;
