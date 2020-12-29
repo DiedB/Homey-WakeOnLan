@@ -1,23 +1,11 @@
 {
   "name": "it.diederik.wol",
-  "version": "2.0.0",
-  "description": "Create Wake on LAN actions in the Homey flow editor. Homey will send a magic packet to a given MAC address.",
+  "version": "3.0.0",
   "main": "app.js",
+  "devDependencies": {
+    "homey": "^2.9.3"
+  },
   "dependencies": {
-    "node-wol": "^0.1.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DiedB/it.diederik.wol.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DiedB/it.diederik.wol/issues"
-  },
-  "homepage": "https://github.com/DiedB/it.diederik.wol#readme"
+    "wol": "^1.0.7"
+  }
 }

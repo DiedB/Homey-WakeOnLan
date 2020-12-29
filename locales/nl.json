@@ -1,9 +1,9 @@
 {
-    "pair": {
-        "mac": "Voer het MAC-adres van het apparaat in:",
-        "name": "Geef het apparaat een naam:",
-        "add": "Toevoegen"
-    },
-    "mac_error": "MAC-adres onjuist. Gebruik een MAC-adres in het formaat 12:34:56:AB:CD:EF.",
-    "default_name": "WOL-apparaat"
+  "pair": {
+    "mac": "Voer het MAC-adres van het apparaat in:",
+    "name": "Geef het apparaat een naam:",
+    "add": "Toevoegen"
+  },
+  "mac_error": "MAC-adres onjuist. Gebruik een MAC-adres in het formaat 12:34:56:AB:CD:EF.",
+  "default_name": "WOL-apparaat"
 }

@@ -1,0 +1,20 @@
+{
+  "id": "wol_device",
+  "name": {
+    "en": "LAN Device",
+    "nl": "LAN-apparaat"
+  },
+  "class": "button",
+  "capabilities": [
+    "button"
+  ],
+  "images": {
+    "large": "/drivers/wol_device/assets/images/large.png",
+    "small": "/drivers/wol_device/assets/images/small.png"
+  },
+  "pair": [
+    {
+      "id": "pair"
+    }
+  ]
+}

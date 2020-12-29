@@ -1,12 +1,14 @@
-'use strict'
+'use strict';
 
 const Homey = require('homey');
-const wol = require('node-wol');
 
-class WakeOnLAN extends Homey.App {
-	onInit() {
-		this.log('Running');
-	}
+class MyApp extends Homey.App {
+  /**
+   * onInit is called when the app is initialized.
+   */
+  async onInit() {
+    this.log('MyApp has been initialized');
+  }
 }
 
-module.exports = WakeOnLAN;
+module.exports = MyApp;

@@ -1,68 +1,69 @@
 <style type="text/css">
-.form-wrapper {
-	width: 100%;
-	height: 100%;
+  .form-group,
+  .input-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-	display: flex;
-	justify-content: center;
-}
+  .input-field {
+    margin-top: 10px;
+  }
 
-.form-group, .input-field {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-
-.input-field {
-	margin-top: 10px;
-}
-
-.submit-button {
-	margin-top: 10px;
-}
+  .submit-button {
+    margin-top: 10px;
+  }
 </style>
 
-<div class="form-wrapper">
-	<div class="form-group">
-		<div class="input-field">
-			<label for="mac" data-i18n="pair.mac" />
-			<input type="text" id="mac" placeholder="12:34:56:AB:CD:EF" value="" />
-		</div>
+<div class="form-group">
+  <div class="input-field">
+    <label for="mac" data-i18n="pair.mac">
+      <!-- Field label will be placed here -->
+    </label>
+    <input type="text" id="mac" placeholder="12:34:56:AB:CD:EF" value="" />
+  </div>
 
-		<div class="input-field">
-			<label for="name" data-i18n="pair.name" />
-			<input type="text" id="name" placeholder="Name" value="" />
-		</div>
+  <div class="input-field">
+    <label for="name" data-i18n="pair.name">
+      <!-- Field label will be placed here -->
+    </label>
+    <input type="text" id="name" placeholder="Name" value="" />
+  </div>
 
-		<button class="submit-button" id="validate" data-i18n="pair.add" />
-	</div>
+  <button
+    onclick="addDevice()"
+    class="submit-button"
+    id="validate"
+    data-i18n="pair.add"
+  >
+    <!-- Button text will be placed here -->
+  </button>
 </div>
 
-<script type="text/javascript">
-	$(() => {
-		$('#validate').click(() => {
-			$('#validate').prop('disabled', true);
+<script>
+  const addDevice = async () => {
+    document.getElementById("validate").disabled = true;
+    const mac = document.getElementById("mac").value;
+    const name = document.getElementById("name").value;
 
-			var mac = $('#mac').val();
-			var name = $('#name').val();
-
-			Homey.emit('validate', {mac: mac}, (valid) => {
-				if (!valid) {
-					Homey.alert(Homey.__('mac_error'));
-					$('#validate').prop('disabled', false);
-				} else {
-					Homey.addDevice({
-						data: {
-							mac: mac
-						},
-						name: name || Homey.__('default_name')
-					}, (error, result) => {
-						if (error) return console.error(err);
-    					Homey.done();
-					});
-				}
-			});
-		})
-	})
+    const valid = await Homey.emit("validate", { mac });
+    if (!valid) {
+      Homey.alert(Homey.__("mac_error"));
+      document.getElementById("validate").disabled = false;
+    } else {
+      Homey.createDevice({
+        name: name || Homey.__("default_name"),
+        data: {
+          mac,
+        },
+      })
+        .then((_) => {
+          Homey.done();
+        })
+        .catch((error) => {
+          Homey.alert(error);
+        });
+    }
+  };
 </script>
