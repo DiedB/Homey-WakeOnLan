@@ -1,1 +1,1 @@
-Start apparaten op afstand met Wake on LAN.
+Voeg apparaten in je netwerk toe op basis van hun MAC-adres en start ze op afstand in flows of de Homey-app.

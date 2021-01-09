@@ -1,1 +1,1 @@
-Start devices remotely using Wake on LAN.
+Add devices in Homey’s LAN network by their MAC address. Start them remotely using flows or the Homey app.
